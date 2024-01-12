@@ -135,6 +135,30 @@ class LinkedList {
         }
         return head;
     }
+
+    //Program to add node before Kth node value in the linked list
+    addNodeBeforeKthElementValue(kthNodeValue, data, head) {
+        let temp = head;
+        let prevNode = null, nextNode = temp.next;
+        let newNode = new Node(data);
+        while(temp !== null) {
+
+            console.log("prev node: ", prevNode?.data);
+            console.log("current node: ", temp.data);
+            if(prevNode === null && kthNodeValue === temp.data) {
+                newNode.next = temp;
+                temp = newNode;
+                return temp;
+            } else if (kthNodeValue === temp.data) {
+                
+                prevNode.next = newNode;
+                newNode.next = temp;
+            }
+            prevNode = temp;
+            temp = temp.next;
+        }
+        return head;
+    }
 }
 
 module.exports = LinkedList;
